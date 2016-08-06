@@ -1,0 +1,17 @@
+{
+  "name": "systemjs-babel-angular1-minimal-seed",
+  "version": "0.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ruben Barilani",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "systemjs": "^0.19.36"
+  },
+  "devDependencies": {
+    "systemjs-plugin-babel": "0.0.13"
+  }
+}
