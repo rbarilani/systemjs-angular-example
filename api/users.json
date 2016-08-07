@@ -1,4 +1,4 @@
 [
-    { "id": 1, "name": "Ruben", "age": 28 },
-    { "id": 2, "name": "Francesca", "age": 29 } 
+    { "id": 1, "name": "John Doe", "age": 28 },
+    { "id": 2, "name": "Foo Bar", "age": 29 } 
 ]

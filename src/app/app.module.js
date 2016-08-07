@@ -18,7 +18,7 @@ config.$inject = ['$urlRouterProvider', '$stateProvider'];
 // RUN
 //
 const run = ($scope) => {
-    $scope.text = 'systemjs-angular seed';
+    $scope.text = 'systemjs-angular-example';
 };
 run.$inject = ['$rootScope'];
 
