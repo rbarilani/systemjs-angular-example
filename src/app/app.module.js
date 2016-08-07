@@ -7,10 +7,10 @@ import HomeModule from './home/home.module';
 // CONFIG
 //
 const config = ($urlRouterProvider, $stateProvider) => {
-    $urlRouterProvider.otherwise(function ($injector, $location) {
-        console.info('Redirect to "/"');
-        return '/'; 
-    });
+  $urlRouterProvider.otherwise(function($injector, $location) {
+    console.info('Redirect to "/"');
+    return '/';
+  });
 };
 config.$inject = ['$urlRouterProvider', '$stateProvider'];
 
@@ -18,7 +18,7 @@ config.$inject = ['$urlRouterProvider', '$stateProvider'];
 // RUN
 //
 const run = ($scope) => {
-    $scope.text = 'systemjs-angular-example';
+  $scope.text = 'systemjs-angular-example';
 };
 run.$inject = ['$rootScope'];
 
@@ -26,13 +26,13 @@ run.$inject = ['$rootScope'];
 // MODULE
 //
 const AppModule = angular.module('app', [
-    UiRouterModule,
-    HomeModule.name,
-    ContactsModule.name
+  UiRouterModule,
+  HomeModule.name,
+  ContactsModule.name
 ]);
 
 //
 // EXPORT
 //
-export {run, config};
+export { run, config };
 export default AppModule;

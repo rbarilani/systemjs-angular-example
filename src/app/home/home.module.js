@@ -6,10 +6,10 @@ import homeTpl from './home.tpl.html!text';
 // CONFIG
 //
 const config = ($stateProvider) => {
-    $stateProvider.state('home', {
-        url: '/',
-        template: homeTpl
-    });
+  $stateProvider.state('home', {
+    url: '/',
+    template: homeTpl
+  });
 };
 config.$inject = ['$stateProvider'];
 
@@ -17,11 +17,11 @@ config.$inject = ['$stateProvider'];
 // MODULE
 //
 const HomeModule = angular
-    .module('app.home', [UiRouterModule]);
-    
+  .module('app.home', [UiRouterModule]);
+
 HomeModule.config(config);
 
 //
 // EXPORT
 //
-export default HomeModule;    
+export default HomeModule;
