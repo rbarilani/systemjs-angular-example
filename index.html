@@ -11,12 +11,30 @@
 
 </head>
 <body>
+	<script>console.info('BODY START');</script>
 	<script src="node_modules/systemjs/dist/system.js"></script>
 	<script src="system.config.js"></script>
-	<script>SystemJS.import('app/bootstrap')</script>
+	<script>
+		console.info('IMPORTING APP BOOTSTRAP');
+		SystemJS.import('app/bootstrap')
+			.then(function (module) {
+				console.info('APP BOOTSTRAP IMPORTED', module);		
+				return module.default; // es6 module default export
+			})
+			.then(function (bootstrap) {
+				bootstrap();
+			});
+	</script>
 	
 	<div class="ng-cloak">
-		{{ text }}
+		<h2>{{ text }}</h2>
+		<ul>
+			<li><a href="/#/home">home</a></li>
+			<li><a href="/#/users">users</a></li>
+			<li><a href="/#/contacts">contacts</a></li>
+		</ul>
+		<hr />
+		<div ui-view></div>
 	</div>
 </body>
 </html>

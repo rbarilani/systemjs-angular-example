@@ -1,11 +1,23 @@
 import angular from 'angular';
+import UiRouterModule from 'angular-ui-router';
+import ContactsModule from './contacts/contacts.module';
+import HomeModule from './home/home.module';
 
-const runBlock = ($scope) => {
-    $scope.text = 'Cheers from systemjs-babel-angular1-minimal-seed!';
+const run = ($scope) => {
+    $scope.text = 'systemjs-angular seed';
 };
-runBlock.$inject = ['$rootScope'];
+run.$inject = ['$rootScope'];
 
-const AppModule = angular.module('app', []);
-AppModule.run(runBlock);
+const config = ($urlRouterProvider, $stateProvider) => {
+     $urlRouterProvider.otherwise('/');
+};
+config.$inject = ['$urlRouterProvider', '$stateProvider'];
 
+const AppModule = angular.module('app', [
+    UiRouterModule,
+    HomeModule.name,
+    ContactsModule.name
+]);
+
+export {run, config};
 export default AppModule;

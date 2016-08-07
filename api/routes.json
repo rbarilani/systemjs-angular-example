@@ -1,0 +1,8 @@
+[
+  {
+    "stateName": "users",
+    "urlPrefix": "/users",
+    "type": "load",
+    "src": "src/plugins/users/users.module"
+  }
+]

@@ -1,0 +1,18 @@
+<h3>Users</h3>
+
+<span ng-if="vm.loading">{{ vm.loading }}</span>
+
+<table border="1" ng-if="!vm.loading">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Age</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="user in vm.users">
+            <td>{{ user.name }}</td>
+            <td>{{ user.age }}</td>
+        </tr>
+    </tbody>
+</table>

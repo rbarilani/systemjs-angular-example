@@ -1,5 +1,5 @@
 {
-  "name": "systemjs-babel-angular1-minimal-seed",
+  "name": "systemjs-angular-seed",
   "version": "0.0.0",
   "main": "index.js",
   "scripts": {
@@ -9,9 +9,14 @@
   "license": "MIT",
   "dependencies": {
     "angular": "^1.5.8",
-    "systemjs": "^0.19.36"
+    "angular-ui-router": "1.0.0-alpha.5",
+    "oclazyload": "^1.0.9",
+    "systemjs": "^0.19.36",
+    "ui-router-extras": "^0.1.2",
+    "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
-    "systemjs-plugin-babel": "0.0.13"
+    "systemjs-plugin-babel": "0.0.13",
+    "systemjs-plugin-text": "0.0.8"
   }
 }
