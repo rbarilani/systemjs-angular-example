@@ -34,18 +34,38 @@ const ngBootstrap = (routes) => {
  * @return {Promise}
  */ 
 export default function () {
-    let exports = {
-        ng: angular
-    };
-    return fetch('/api/routes.json')
+    let exports = { ng: angular };
+    
+    return fetch('/api/plugins.json')
         .then(function (response) {
             return response.json();
         })
-        .then(function (routes) {
+        .then(function (plugins) {
+            
+            // expose plugins data
+            exports.plugins = {
+                all: angular.copy(plugins),
+                active: plugins.filter((plugin) => {
+                    return plugin.active;
+                })
+            };
+        
+            // get future routes
+            let routes = exports.plugins.active.reduce((acc, plugin) => {
+                if(plugin.route) {
+                    acc.push(plugin.route);
+                }
+                return acc;
+            }, []);
+            
+            // expose future routes
             exports.routes = angular.copy(routes);
+            
+            // bootsrap the angular app
             return ngBootstrap(angular.copy(routes));
         })
         .then(function(ngModule) {
+            // angular app module
             exports.ngModule = ngModule;
             return exports;
         })

@@ -1,7 +1,0 @@
-[
-  {
-    "stateName": "users",
-    "urlPrefix": "/users",
-    "src": "src/plugins/users/users.module"
-  }
-]

@@ -1,0 +1,11 @@
+[
+  {
+    "name": "users",
+    "active": true,
+    "route": {
+      "stateName": "users",
+      "urlPrefix": "/users",
+      "src": "src/plugins/users/users.module"
+    }
+  }  
+]
