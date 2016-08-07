@@ -7,7 +7,10 @@ import HomeModule from './home/home.module';
 // CONFIG
 //
 const config = ($urlRouterProvider, $stateProvider) => {
-     $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise(function ($injector, $location) {
+        console.info('Redirect to "/"');
+        return '/'; 
+    });
 };
 config.$inject = ['$urlRouterProvider', '$stateProvider'];
 

@@ -3,6 +3,8 @@ import 'ui-router-extras/release/modular/ct-ui-router-extras.core';
 import 'ui-router-extras/release/modular/ct-ui-router-extras.future';
 import 'oclazyload';
 
+
+
 const requiredModules = [
     'ui.router',
 	'ct.ui.router.extras.core',
@@ -19,8 +21,10 @@ const stateFactory = ['$q', '$ocLazyLoad', 'futureState', function ($q, $ocLazyL
 		}
 		$ocLazyLoad.load(newModule).then(function () {
 			deferred.resolve();
-		}, function (err) {
-			deferred.reject(err);
+		}, function (error) {
+			console.error('lazyLoadRouter: ERROR while loading futureState:', futureState);
+			console.error(error);
+			deferred.reject(error);
 		});
 	});
 	return deferred.promise;
@@ -36,7 +40,10 @@ export default function (angularModule, futureRoutes) {
 
 	const RouterConfig = function ($futureStateProvider) {
 		$futureStateProvider.stateFactory('load', stateFactory);
-		futureRoutes.forEach((futureState) => {
+		futureRoutes.map((futureState) => {
+			futureState.type = futureState.type || 'load';
+			return futureState;
+		}).forEach((futureState) => {
 			$futureStateProvider.futureState(futureState);
 		});
 	};

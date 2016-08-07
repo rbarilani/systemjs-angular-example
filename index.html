@@ -26,10 +26,14 @@
 				console.log('app was booted!', exports);	
 				console.log('angular version', exports.ng.version.full);
 				console.log('future routes', JSON.stringify(exports.routes));
-				console.log('app module requires', exports.ngModule.requires.join(', ') );
+				console.log('app module requires', '"' + exports.ngModule.requires.join(', ') + '"' );
 				
 				// remove loading
 				exports.ng.element(document.querySelector('.boostrap-cloak')).remove();
+			})
+			.catch(function (error) {
+				console.error(error);
+				document.querySelector('.boostrap-cloak').innerHTML = 'SOMETHING WENT TERRIBLY WRONG, TRY AGAIN LATER.';
 			});
 	</script>
 	
@@ -38,7 +42,7 @@
 	<div class="ng-cloak">
 		<h2>{{ text }}</h2>
 		<ul>
-			<li><a href="/#/home">home</a></li>
+			<li><a href="/#/">home</a></li>
 			<li><a href="/#/users">users</a></li>
 			<li><a href="/#/contacts">contacts</a></li>
 		</ul>

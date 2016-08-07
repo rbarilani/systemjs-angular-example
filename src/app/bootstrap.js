@@ -8,39 +8,50 @@ import {run, config} from './app.module';
  * Configure AppModule and bootstrap the main angular app
  * @type function
  * @params {Array<Object>} routes - future routes for lazy loading 
- * @return void
+ * @return {Promise}
  **/ 
 const ngBootstrap = (routes) => {
     
-    AppModule.config(lazyLoadRouter(AppModule, routes));
+    return new Promise(function (resolve, reject) {
+        AppModule.config(lazyLoadRouter(AppModule, routes));
     
-    AppModule.config(config);
+        AppModule.config(config);
     
-    AppModule.run(run);
+        AppModule.run(run);
     
-    angular.element(document).ready(function() {
-        angular.bootstrap(document, [AppModule.name], { strictDi: true });
+        angular.element(document).ready(function() {
+            try {
+                angular.bootstrap(document, [AppModule.name], { strictDi: true });
+                resolve(AppModule);    
+            } catch(error) {
+                reject(error)
+            }
+        });
     });
-    
-    return AppModule;
 }
 
 /**
  * @return {Promise}
  */ 
 export default function () {
+    let exports = {
+        ng: angular
+    };
     return fetch('/api/routes.json')
         .then(function (response) {
             return response.json();
-        }).then(function(routes) {
-            return {
-                ng: angular,
-                ngModule: ngBootstrap(routes),
-                routes: routes
-            };
-        }).catch(function(ex) {
+        })
+        .then(function (routes) {
+            exports.routes = angular.copy(routes);
+            return ngBootstrap(angular.copy(routes));
+        })
+        .then(function(ngModule) {
+            exports.ngModule = ngModule;
+            return exports;
+        })
+        .catch(function(ex) {
             console.error('An error occured during bootstrap phase of the application', ex)
-            return ex;
+            throw ex;
         });
 }
 
