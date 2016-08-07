@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="user in vm.users">
+        <tr ui-sref="userDetail({userId: user.id})" ng-repeat="user in vm.users track by user.id">
             <td>{{ user.name }}</td>
             <td>{{ user.age }}</td>
         </tr>

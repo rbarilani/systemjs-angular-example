@@ -1,0 +1,9 @@
+<h3>User detail #{{ vm.user.id }}</h3>
+
+<span ng-if="vm.loading">{{ vm.loading }}</span>
+
+<span ng-if="vm.error">{{ vm.error.message }}</span>
+
+<div ng-if="!vm.loading">
+    {{ vm.user | json }}
+</div>

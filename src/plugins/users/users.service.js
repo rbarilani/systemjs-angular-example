@@ -22,6 +22,16 @@ class UsersService {
     
         return deferred.promise;
     }
+    
+    getUser(id) {
+        return this.getUsers().then(function (users) {
+            let user = users.find((user) => {
+                return user.id == id;
+            });
+            if(!user) { throw new Error('User not found') }
+            return user;
+        });
+    }
 }
 
 UsersService.$inject = ['$q', '$timeout', '$http'];
