@@ -2,7 +2,7 @@
 <html lang="en-us">
 <head>
 <meta charset="utf-8">
-<title>systemjs-babel-angular1-minimal-seed</title>
+<title>systemjs-angular-seed</title>
 <base href="/">
 
 <style>
@@ -32,7 +32,10 @@
 				exports.ng.element(document.querySelector('.boostrap-cloak')).remove();
 			})
 			.catch(function (error) {
+				// fatal error
 				console.error(error);
+				
+				// replace loading with fatal error message
 				document.querySelector('.boostrap-cloak').innerHTML = 'SOMETHING WENT TERRIBLY WRONG, TRY AGAIN LATER.';
 			});
 	</script>
