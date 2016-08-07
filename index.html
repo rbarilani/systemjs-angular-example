@@ -4,30 +4,7 @@
 <meta charset="utf-8">
 <title>systemjs-angular-example</title>
 <base href="/">
-
-<style>
-	.ng-cloak { display: none; }
-
-	.github-icon {
-	  display: block;
-	  position: fixed;
-	  right: 12px;
-	  top: 12px;
-	  width: 50px;
-	  height: 50px;
-	  cursor: pointer;
-	}
-
-	.github-icon:hover {
-	  opacity: 0.5;
-	}
-
-	.github-icon__img {
-	  display: block;
-	  width: 100%;
-	}
-</style>
-
+<link rel="stylesheet" href="index.css" type="text/css" />
 </head>
 <body>
 	<script src="node_modules/systemjs/dist/system.js"></script>
@@ -36,19 +13,23 @@
 
 	<div class="boostrap-cloak">Loading...</div>
 
-	<div class="container ng-cloak">
-	  <a class="github-icon" href="https://github.com/rbarilani/systemjs-angular-example" title="show on github" target="_blank">
-	    <img class="github-icon__img" src="http://findicons.com/files/icons/2779/simple_icons/64/github_64_black.png">
-    </a>
+	<div class="main-container ng-cloak">
 
-		<h2>{{ text }}</h2>
+	  <header class="main-header">
+    	<h2>{{ text }}</h2>
+      <a class="github-icon" href="https://github.com/rbarilani/systemjs-angular-example" title="show on github" target="_blank">
+        <img class="github-icon__img" src="http://findicons.com/files/icons/2779/simple_icons/64/github_64_black.png">
+      </a>
+    </header>
 
 		<!-- navigation -->
-		<ul>
-			<li><a href="/#/">home</a></li>
-			<li><a href="/#/users">users</a></li>
-			<li><a href="/#/contacts">contacts</a></li>
-		</ul>
+		<nav class="main-nav">
+		  <ul>
+			  <li><a href="/#/">home</a></li>
+			  <li><a href="/#/users">users</a></li>
+			  <li><a href="/#/contacts">contacts</a></li>
+		  </ul>
+		</nav>
 
 		<hr />
 
