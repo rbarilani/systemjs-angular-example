@@ -3,25 +3,23 @@ import 'ui-router-extras/release/modular/ct-ui-router-extras.core';
 import 'ui-router-extras/release/modular/ct-ui-router-extras.future';
 import 'oclazyload';
 
-
-
 const requiredModules = [
-    'ui.router',
+	'ui.router',
 	'ct.ui.router.extras.core',
 	'ct.ui.router.extras.future',
 	'oc.lazyLoad'
 ];
 
-const stateFactory = ['$q', '$ocLazyLoad', 'futureState', function ($q, $ocLazyLoad, futureState) {
+const stateFactory = ['$q', '$ocLazyLoad', 'futureState', function($q, $ocLazyLoad, futureState) {
 	let deferred = $q.defer();
-	System['import'](futureState.src).then(function (loaded) {
+	System['import'](futureState.src).then(function(loaded) {
 		let newModule = loaded;
 		if (!loaded.name) {
-			newModule = loaded[ Object.keys(loaded)[0] ];
+			newModule = loaded[Object.keys(loaded)[0]];
 		}
-		$ocLazyLoad.load(newModule).then(function () {
+		$ocLazyLoad.load(newModule).then(function() {
 			deferred.resolve();
-		}, function (error) {
+		}, function(error) {
 			console.error('lazyLoadRouter: ERROR while loading futureState:', futureState);
 			console.error(error);
 			deferred.reject(error);
@@ -30,15 +28,15 @@ const stateFactory = ['$q', '$ocLazyLoad', 'futureState', function ($q, $ocLazyL
 	return deferred.promise;
 }]
 
-export default function (angularModule, futureRoutes) {
-    
-    requiredModules.forEach((moduleId) => {
-        if(angularModule.requires.indexOf(moduleId) === -1) {
-        	angularModule.requires.push(moduleId);
-        }
-    });
+export default function(angularModule, futureRoutes) {
 
-	const RouterConfig = function ($futureStateProvider) {
+	requiredModules.forEach((moduleId) => {
+		if (angularModule.requires.indexOf(moduleId) === -1) {
+			angularModule.requires.push(moduleId);
+		}
+	});
+
+	const RouterConfig = function($futureStateProvider) {
 		$futureStateProvider.stateFactory('load', stateFactory);
 		futureRoutes.map((futureState) => {
 			futureState.type = futureState.type || 'load';
@@ -47,7 +45,7 @@ export default function (angularModule, futureRoutes) {
 			$futureStateProvider.futureState(futureState);
 		});
 	};
-	
+
 	RouterConfig.$inject = ['$futureStateProvider'];
 
 	return RouterConfig;
