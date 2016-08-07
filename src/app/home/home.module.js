@@ -21,4 +21,7 @@ const HomeModule = angular
     
 HomeModule.config(config);
 
+//
+// EXPORT
+//
 export default HomeModule;    

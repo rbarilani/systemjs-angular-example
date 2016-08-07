@@ -4,6 +4,12 @@ import lazyLoadRouter from  '../lib/lazy-load-router';
 import AppModule from './app.module';
 import {run, config} from './app.module';
 
+/**
+ * Configure AppModule and bootstrap the main angular app
+ * @type function
+ * @params {Array<Object>} routes - future routes for lazy loading 
+ * @return void
+ **/ 
 const ngBootstrap = (routes) => {
     
     AppModule.config(lazyLoadRouter(AppModule, routes));
@@ -12,26 +18,29 @@ const ngBootstrap = (routes) => {
     
     AppModule.run(run);
     
-    console.info('NG-BOOTSTRAP');
-    
     angular.element(document).ready(function() {
         angular.bootstrap(document, [AppModule.name], { strictDi: true });
     });
+    
+    return AppModule;
 }
 
+/**
+ * @return {Promise}
+ */ 
 export default function () {
-    
-    console.info('EXECUTING APP BOOTSTRAP');
-
-    fetch('/api/routes.json')
+    return fetch('/api/routes.json')
         .then(function (response) {
             return response.json();
         }).then(function(routes) {
-            console.info('DYNAMIC ROUTES LOADED', routes);
-            ngBootstrap(routes);
-            console.info('APP BOOTSTRAP COMPLETED');
+            return {
+                ng: angular,
+                ngModule: ngBootstrap(routes),
+                routes: routes
+            };
         }).catch(function(ex) {
             console.error('An error occured during bootstrap phase of the application', ex)
+            return ex;
         });
 }
 

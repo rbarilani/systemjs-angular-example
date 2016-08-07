@@ -20,5 +20,8 @@ const ContactsModule = angular
     .module('app.contacts', [uiRouterModule]);
 
 ContactsModule.config(config);
-    
+
+//
+// EXPORT
+//
 export default ContactsModule;    

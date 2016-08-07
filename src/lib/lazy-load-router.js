@@ -30,7 +30,6 @@ export default function (angularModule, futureRoutes) {
     
     requiredModules.forEach((moduleId) => {
         if(angularModule.requires.indexOf(moduleId) === -1) {
-            console.info('PUSH REQUIRED MODULE', moduleId);
         	angularModule.requires.push(moduleId);
         }
     });

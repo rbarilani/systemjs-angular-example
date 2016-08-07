@@ -11,20 +11,29 @@
 
 </head>
 <body>
-	<script>console.info('BODY START');</script>
 	<script src="node_modules/systemjs/dist/system.js"></script>
 	<script src="system.config.js"></script>
 	<script>
-		console.info('IMPORTING APP BOOTSTRAP');
+		/* global SystemJS */
 		SystemJS.import('app/bootstrap')
 			.then(function (module) {
-				console.info('APP BOOTSTRAP IMPORTED', module);		
 				return module.default; // es6 module default export
 			})
 			.then(function (bootstrap) {
-				bootstrap();
+				return bootstrap();
+			})
+			.then(function (exports) {
+				console.log('app was booted!', exports);	
+				console.log('angular version', exports.ng.version.full);
+				console.log('future routes', JSON.stringify(exports.routes));
+				console.log('app module requires', exports.ngModule.requires.join(', ') );
+				
+				// remove loading
+				exports.ng.element(document.querySelector('.boostrap-cloak')).remove();
 			});
 	</script>
+	
+	<div class="boostrap-cloak">Loading...</div>
 	
 	<div class="ng-cloak">
 		<h2>{{ text }}</h2>

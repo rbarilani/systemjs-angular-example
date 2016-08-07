@@ -9,7 +9,7 @@ SystemJS.config({
         // babel
         'plugin-babel': './node_modules/systemjs-plugin-babel/plugin-babel.js',
         'systemjs-babel-build': './node_modules/systemjs-plugin-babel/systemjs-babel-browser.js',
-        'text': './node_modules/systemjs-plugin-text/text.js', // map text plugin - to import "import text from './text.html!text'"
+        'text': './node_modules/systemjs-plugin-text/text.js', // map text plugin - usage: "import text from './text.html!text'"
     
         // deps
         'whatwg-fetch': './node_modules/whatwg-fetch/fetch.js',
