@@ -1,4 +1,7 @@
 (function() {
+  var $appBootstrapCloak = function () {
+    return document.querySelector('.app-bootstrap-cloak');
+  };
 
   var onBootedLogDebugInfos = function(exports) {
     // FIXME: replace with something more configurable
@@ -21,7 +24,7 @@
     })
     .then(function(exports) {
       // remove loading
-      exports.ng.element(document.querySelector('.boostrap-cloak')).remove();
+      exports.ng.element($appBootstrapCloak()).remove();
 
       // catch eventual errors while logging infos to prevent fake fatal error to be raised
       // just warn the developer
@@ -37,6 +40,6 @@
       console.error(error);
 
       // replace loading with fatal error message
-      document.querySelector('.boostrap-cloak').innerHTML = 'SOMETHING WENT TERRIBLY WRONG, TRY AGAIN LATER.';
+      $appBootstrapCloak().innerHTML = 'SOMETHING WENT TERRIBLY WRONG, TRY AGAIN LATER.';
     });
 })();
