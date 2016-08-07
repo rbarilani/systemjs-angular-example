@@ -5,7 +5,7 @@
     let activePlugins = exports.plugins.active.map((p) => p.name);
     console.group('The App was booted!');
     console.info('angular version:', exports.ng.version.full);
-    console.info('active plugins:', activePlugins.length ? '"' + activePlugins.join(',') + '"' : '(none)');
+    console.info('active plugins:', activePlugins.length ? '"' + activePlugins.join(', ') + '"' : '(none)');
     console.info('future routes:', exports.routes.length ? '"' + JSON.stringify(exports.routes) + '"' : '(none)');
     console.info('ng app module requires:', '"' + exports.ngModule.requires.join(', ') + '"');
     console.groupEnd();

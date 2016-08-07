@@ -7,5 +7,14 @@
       "urlPrefix": "/users",
       "src": "src/plugins/users/users.module"
     }
-  }  
+  },
+  {
+    "name": "contacts",
+    "active": true,
+    "route": {
+      "stateName": "contacts",
+      "urlPrefix": "/contacts",
+      "src": "src/plugins/contacts/contacts.module"
+    }
+  }
 ]
