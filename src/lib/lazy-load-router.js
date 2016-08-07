@@ -12,21 +12,43 @@ const requiredModules = [
 
 const stateFactory = ['$q', '$ocLazyLoad', 'futureState', function($q, $ocLazyLoad, futureState) {
   let deferred = $q.defer();
+
+  const onError = (originalError) => {
+    let error = new LazyLoadRouterError(futureState, originalError);
+    console.error(error);
+    console.error(originalError);
+    deferred.reject(error);
+  };
+
   System['import'](futureState.src).then(function(loaded) {
     let newModule = loaded;
     if (!loaded.name) {
       newModule = loaded[Object.keys(loaded)[0]];
     }
-    $ocLazyLoad.load(newModule).then(function() {
-      deferred.resolve();
-    }, function(error) {
-      console.error('lazyLoadRouter: ERROR while loading futureState:', futureState);
-      console.error(error);
-      deferred.reject(error);
-    });
-  });
+    $ocLazyLoad
+      .load(newModule)
+      .then(function() { deferred.resolve(); }, onError);
+  })
+  .catch(onError);
+
   return deferred.promise;
-}]
+}];
+
+function LazyLoadRouterError(futureState, previous) {
+  this.name = 'LazyLoadRouterError';
+  this.previous = previous;
+  this.message = this.name + ': ERROR while loading futureState: ' + JSON.stringify({
+    stateName: futureState.stateName,
+    urlPrefix: futureState.urlPrefix,
+    src: futureState.src
+  });
+  this.stack = (new Error()).stack;
+}
+
+LazyLoadRouterError.prototype = Object.create(Error.prototype);
+LazyLoadRouterError.prototype.constructor = LazyLoadRouterError;
+
+export {LazyLoadRouterError};
 
 export default function(angularModule, futureRoutes) {
 

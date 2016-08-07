@@ -75,7 +75,7 @@ export default function() {
       return exports;
     })
     .catch(function(error) {
-      console.error('An error occured during bootstrap phase of the application', error)
+      console.error('Fatal error while booting application.', error)
       throw error;
     });
 }
