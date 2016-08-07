@@ -2,7 +2,8 @@ systemjs-angular-example (work in progress)
 ===========================================
 
 AngularJs 1.5.x + ES6 with Babel + SystemJS + NPM.
-Heavily inspired from: [https://github.com/lookfirst/systemjs-seed](https://github.com/lookfirst/systemjs-seed). Cheers guys!
+
+Heavily inspired from: [https://github.com/lookfirst/systemjs-seed](https://github.com/lookfirst/systemjs-seed). Cheers guys :beers:!
 
 
 This example **CONTAINS**:
