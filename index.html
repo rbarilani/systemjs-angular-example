@@ -1,42 +1,45 @@
 <!DOCTYPE html>
 <html lang="en-us">
+
 <head>
-<meta charset="utf-8">
-<title>systemjs-angular-example</title>
-<base href="/">
-<link rel="stylesheet" href="index.css" type="text/css" />
+  <meta charset="utf-8">
+  <title>systemjs-angular-example</title>
+  <base href="/">
+  <link rel="stylesheet" href="index.css" type="text/css" />
 </head>
+
 <body>
-	<script src="node_modules/systemjs/dist/system.js"></script>
-	<script src="system.config.js"></script>
-	<script src="index.js"></script>
+  <script src="node_modules/systemjs/dist/system.js"></script>
+  <script src="system.config.js"></script>
+  <script src="index.js"></script>
 
-	<div class="boostrap-cloak">Loading...</div>
+  <div class="boostrap-cloak">Loading...</div>
 
-	<div class="main-container ng-cloak">
+  <div class="main-container ng-cloak">
 
-	  <header class="main-header">
-    	<h2>{{ text }}</h2>
+    <header class="main-header">
+      <h2>{{ text }}</h2>
       <a class="github-icon" href="https://github.com/rbarilani/systemjs-angular-example" title="show on github" target="_blank">
         <img class="github-icon__img" src="http://findicons.com/files/icons/2779/simple_icons/64/github_64_black.png">
       </a>
     </header>
 
-		<!-- navigation -->
-		<nav class="main-nav">
-		  <ul>
-			  <li><a href="/#/">home</a></li>
-			  <li><a href="/#/users">users</a></li>
-			  <li><a href="/#/contacts">contacts</a></li>
-		  </ul>
-		</nav>
+    <!-- navigation -->
+    <nav class="main-nav">
+      <ul>
+        <li><a href="/#/">home</a></li>
+        <li><a href="/#/users">users</a></li>
+        <li><a href="/#/contacts">contacts</a></li>
+      </ul>
+    </nav>
 
-		<hr />
+    <hr />
 
-		<!-- router outlet -->
-		<div ui-view></div>
+    <!-- router outlet -->
+    <div ui-view></div>
 
-	</div>
+  </div>
 
 </body>
+
 </html>
